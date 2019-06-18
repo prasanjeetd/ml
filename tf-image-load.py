@@ -15,10 +15,10 @@ import pathlib
 print(data_root) """
 
 # local_file = 'E:\\Tutorials\\AI\\ML\\Tutorials\\Tensorflow\\venv\\apps\\flower_photos\\flower_photos'
-local_file = 'E:/Tutorials/AI/ML/Tutorials/Tensorflow/venv/apps/flower_photos/flower_photos'
+local_file = 'E:/Tutorials/AI/ML/Tutorials/Tensorflow/venv/machinelearning/ml/flower_photos/flower_photos/'
 
 data_root = pathlib.Path(local_file)
-print(data_root)
+print('data_root:', data_root)
 
 for item in data_root.iterdir():
     print(item)
@@ -39,20 +39,22 @@ attributions = dict(attributions)
 
 def caption_image(image_path):
     image_rel = pathlib.Path(image_path).relative_to(data_root)
-    print(image_rel)
+    print("caption_image:", image_rel)
 
     str_img = str(image_rel)
-    print(str_img)
-    # print(attributions)
 
-    str_img = str_img.replace("//", "\\")
-    str_img = str_img.replace("/", "\\")
+    print('str_img:', str_img)
+    print('attributions:', attributions['sunflowers/6627521877_6e43fb3c49_m.jpg'])
 
+    # str_img = str_img.replace("//", "\\")
+    str_img = str_img.replace('\\','/')
+    print('str_img:', str_img)
+ 
     img_attr = attributions[str_img]
-    print(img_attr)
+    print('img_attr:', img_attr)
 
     img = img_attr.split(' - ')
-    print(img)
+    print('img:', img)
     return "Image (CC BY 2.0) " + ' - '.join(img[:-1])
 
 
